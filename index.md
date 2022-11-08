@@ -1,8 +1,8 @@
 ---
-title: Hayden Badger AKA Seldom
+title: Hayden Badger - Seldom
 ---
 
-# Hayden Badger AKA Seldom
+# Hayden Badger - Seldom
 
 Hello! I'm a game designer and programmer. This portfolio showcases my more notable projects. More text shall be writ here.
 
