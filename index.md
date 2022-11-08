@@ -15,7 +15,7 @@ This portfolio is split into four main sections. Here's some links for navigatio
 
 ## Bevy Plugins
 
-[Back to top](#hayden-badger-aka-seldom)
+[Back to top](#hayden-badger---seldom)
 
 ### `seldom_pixel`
 
@@ -29,7 +29,7 @@ This portfolio is split into four main sections. Here's some links for navigatio
 
 ## Games
 
-[Back to top](#hayden-badger-aka-seldom)
+[Back to top](#hayden-badger---seldom)
 
 ### Star Machine
 
@@ -59,7 +59,7 @@ This portfolio is split into four main sections. Here's some links for navigatio
 
 ## Work
 
-[Back to top](#hayden-badger-aka-seldom)
+[Back to top](#hayden-badger---seldom)
 
 ### Sparklight
 
@@ -69,7 +69,7 @@ This portfolio is split into four main sections. Here's some links for navigatio
 
 ## Other Projects
 
-[Back to top](#hayden-badger-aka-seldom)
+[Back to top](#hayden-badger---seldom)
 
 ### Tower
 
