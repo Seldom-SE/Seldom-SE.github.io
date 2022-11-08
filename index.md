@@ -4,7 +4,21 @@ title: Hayden Badger - Seldom
 
 # Hayden Badger - Seldom
 
-Hello! I'm a game designer and programmer. This portfolio showcases my more notable projects. More text shall be writ here.
+Hello! I'm Hayden, a game developer and Bevy plugin author. This portfolio showcases
+my more notable projects. First, here's a short introduction.
+
+I've used various tools to make games since 2008, but I didn't learn Rust until 2019,
+when I was in college. It quickly became my favorite language, so I started many projects
+in it. I used Amethyst on and off, until I discovered Bevy 0.4 in December 2020. I used it
+on and off, until September 2021, when I became less busy with school and work, and I started
+working on my Bevy projects very actively. This active work continues to today.
+
+In May 2022, I earned my Software Engineering B.S. from Arizona State University with a 4.00 GPA.
+Since then, I've been living off the money I saved up and working on various projects in Bevy.
+After adding Rhai scripting to one of my games, I realized some of my work could be useful
+to other developers. Since then, I've been writing my games in a decoupled way,
+so I can pull out a piece of it and release it as a plugin. I've released 5 Bevy-related
+crates so far, and I currently have 3 more in the works.
 
 This portfolio is split into four main sections. Here's some links for navigation:
 
