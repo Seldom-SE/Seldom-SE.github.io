@@ -35,7 +35,7 @@ This portfolio is split into four main sections. Here's some links for navigatio
 
 ### `seldom_pixel`
 
-[Github](https://github.com/Seldom-SE/seldom_pixel)
+[GitHub](https://github.com/Seldom-SE/seldom_pixel)
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/pmTPdGxYVYw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -83,6 +83,29 @@ commands
 ```
 
 ### `seldom_state`
+
+[GitHub](https://github.com/Seldom-SE/seldom_state)
+
+`seldom_state` is my most popular crate. It adds a component-based state machine that you can add
+to your entities. You can define your own states and triggers and automatically add and remove
+bundles based on the current state. Most of the implementation involved Rust type system magic
+and Bevy reflection, which was fun to work with and resulted in a (mostly) clean API. The most
+glaring issue is that it accepts bundles instead of components for states, but with
+components-as-bundles in Bevy 0.9, this will become a lot cleaner.
+
+Here's a sample of code that uses `seldom_state`
+
+```rust
+.insert(
+    StateMachine::new((Move,))
+        .trans::<(Move,)>(JustPressedTrigger(Action::Melee), (Melee,))
+        .trans::<(Melee,)>(DoneTrigger::success(), (Move,))
+        .remove_on_exit::<(Melee,), PxAnimationBundle>()
+        .trans::<(Move,)>(JustPressedTrigger(Action::Shoot), (Shoot,))
+        .trans::<(Shoot,)>(DoneTrigger::success(), (Move,))
+        .remove_on_exit::<(Shoot,), PxAnimationBundle>(),
+)
+```
 
 ### `seldom_map_nav`
 
