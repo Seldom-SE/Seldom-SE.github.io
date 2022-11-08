@@ -2,10 +2,12 @@
 title: Hayden Badger - Seldom
 ---
 
+*The code featured on this page is dual-licensed under Apache 2.0 and MIT at your option.*
+
 # Hayden Badger - Seldom
 
 Hello! I'm Hayden, a game developer and Bevy plugin author. This portfolio showcases
-my more notable projects. First, here's a short introduction.
+my more notable projects. First, here's a brief introduction.
 
 I've used various tools to make games since 2008, but I didn't learn Rust until 2019,
 when I was in college. It quickly became my favorite language, so I started many projects
@@ -20,7 +22,7 @@ to other developers. Since then, I've been writing my games in a decoupled way,
 so I can pull out a piece of it and release it as a plugin. I've released 5 Bevy-related
 crates so far, and I currently have 3 more in the works.
 
-This portfolio is split into four main sections. Here's some links for navigation:
+This portfolio is split into four main sections. Here's some links for navigation.
 
 - [Bevy Plugins](#bevy-plugins) (5 items)
 - [Games](#games) (13 items)
@@ -32,6 +34,51 @@ This portfolio is split into four main sections. Here's some links for navigatio
 [Back to top](#hayden-badger---seldom)
 
 ### `seldom_pixel`
+
+[Github](https://github.com/Seldom-SE/seldom_pixel)
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/pmTPdGxYVYw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+`seldom_pixel` is my largest plugin and the plugin that I'm proudest of. It handles filters,
+animations, typefaces, particle emitters, `bevy_ecs_tilemap` integration, and much more,
+for limited color palette pixel art games. It leverages the color palette restriction
+to make it easy to create effects, and relatively easy for me to add effect-related features.
+I originally made it for [Bloodcurse Island](#bloodcurse-island), and I've been using it
+for all of my projects since then.
+
+The two main pieces of `seldom_pixel` are the asset processing and the rendering. Bevy `Image`s
+are processed into my own image representation that varies based on the type of asset.
+These assets each have custom rendering code, and are rendered based on the entities and components
+in the world, onto an `Image` that represents the screen.
+
+Here's a bit of code that uses `seldom_pixel`.
+
+```rust
+*cursor = PxCursor::Filter {
+    idle: assets.invert.clone(),
+    left_click: assets.invert.clone(),
+    right_click: assets.invert.clone(),
+};
+
+commands
+    .spawn_bundle(PxSpriteBundle {
+        sprite: assets.background.clone(),
+        anchor: PxAnchor::BottomLeft,
+        layer: Layer::Background,
+        ..default()
+    })
+    .insert(assets.background_filter.clone())
+    .insert(Name::new("Background"));
+
+commands
+    .spawn_bundle(PxSpriteBundle::<Layer> {
+        sprite: assets.player_idle.clone(),
+        ..default()
+    })
+    .insert(PxSubPosition::default())
+    .insert(Player)
+    .insert(Name::new("Player"));
+```
 
 ### `seldom_state`
 
