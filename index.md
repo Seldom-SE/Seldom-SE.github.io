@@ -2,7 +2,7 @@
 title: Hayden Badger - Seldom
 ---
 
-*The code featured on this page is dual-licensed under Apache 2.0 and MIT at your option.*
+*The code in this page is dual-licensed under Apache 2.0 and MIT at your option.*
 
 # Hayden Badger - Seldom
 
@@ -51,7 +51,7 @@ are processed into my own image representation that varies based on the type of 
 These assets each have custom rendering code, and are rendered based on the entities and components
 in the world, onto an `Image` that represents the screen.
 
-Here's a bit of code that uses `seldom_pixel`.
+Here's a sample of code that uses `seldom_pixel`.
 
 <!-- TODO fix this style -->
 
@@ -89,11 +89,11 @@ commands
 `seldom_state` is my most popular crate. It adds a component-based state machine that you can add
 to your entities. You can define your own states and triggers and automatically add and remove
 bundles based on the current state. Most of the implementation involved Rust type system magic
-and Bevy reflection, which was fun to work with and resulted in a (mostly) clean API. The most
-glaring issue is that it accepts bundles instead of components for states, but with
-components-as-bundles in Bevy 0.9, this will become a lot cleaner.
+and Bevy reflection, which was fun to work with and resulted in a pretty clean API.
+Once components-as-bundles lands in a Bevy release, I'll be able to remove all these tuples
+from the API.
 
-Here's a sample of code that uses `seldom_state`
+Here's a sample of code that uses `seldom_state`.
 
 ```rust
 .insert(
@@ -109,9 +109,92 @@ Here's a sample of code that uses `seldom_state`
 
 ### `seldom_map_nav`
 
+[GitHub](https://github.com/Seldom-SE/seldom_map_nav)
+
+<video src="https://user-images.githubusercontent.com/38388947/200685525-9fbf9826-178e-4a71-9dd5-35431853f4ad.mp4" data-canonical-src="https://user-images.githubusercontent.com/38388947/200685525-9fbf9826-178e-4a71-9dd5-35431853f4ad.mp4" controls="controls" muted="muted" class="d-block rounded-bottom-2 border-top width-fit" style="max-height:640px;">
+</video>
+
+`seldom_map_nav` adds navmesh generation, pathfinding, and navigation for tilemaps to Bevy. It uses
+the `navmesh` crate to generate navmeshes from a list of triangles, and to do pathfinding. It uses
+the `cdt` crate to generate a list of triangles from a list of vertices and constraints. The part
+that `seldom_map_nav` handles is generating a list of vertices and constraints from a tilemap,
+with varying levels of clearance. It also handles navigation and provides an API for developers
+to interface with the crate's features. The generated paths are occasionally poor,
+even on the greatest quality settings, so I'm keeping an eye out for other navmesh crates
+that I can depend on.
+
+Here's a sample of code that uses `seldom_map_nav`. It also uses `seldom_state`.
+
+```rust
+let pathfind = Pathfind::new(
+    map,
+    0.,
+    Some(REPATH_FREQUENCY),
+    PathTarget::Dynamic(player),
+    NAV_QUERY,
+    NAV_PATH_MODE,
+);
+
+// ...
+
+.insert(
+    StateMachine::new((Idle,))
+        .trans::<(Idle,)>(
+            Near {
+                target: player,
+                range: TRACK_PLAYER_RANGE,
+            },
+            NavBundle {
+                nav: Nav::new(GHOST_SPEED),
+                pathfind: Pathfind {
+                    radius: GHOST_RADIUS,
+                    ..pathfind.clone()
+                },
+            },
+        )
+        .trans::<NavBundle>(
+            NotTrigger(Near {
+                target: player,
+                range: LOSE_PLAYER_RANGE,
+            }),
+            (Idle,),
+        ),
+)
+```
+
 ### `seldom_fn_plugin`
 
+[GitHub](https://github.com/Seldom-SE/seldom_fn_plugin)
+
+`seldom_fn_plugin` is a small crate that improves the ergonomics of Bevy plugins by avoiding
+them entirely. The example below shows a basic usage, but it can also help avoid using
+`PhantomData` and making unnecessary clones.
+
+```rust
+// Before:
+
+pub struct ControlsPlugin;
+
+impl Plugin for ControlsPlugin {
+    fn build(&self, app: &mut App) {
+        app.init_resource::<Controls>();
+    }
+}
+
+// After:
+
+pub fn controls_plugin(app: &mut App) {
+    app.init_resource::<Controls>();
+}
+```
+
 ### `seldom_interop`
+
+[GitHub](https://github.com/Seldom-SE/seldom_interop)
+
+`seldom_interop` is a small crate that adds traits for Bevy position components. I made it
+so that I could use `seldom_map_nav` with `seldom_pixel`'s position components, while maintaining
+support for `Transform`.
 
 ## Games
 
