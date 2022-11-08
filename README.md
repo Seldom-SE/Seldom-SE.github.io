@@ -29,13 +29,13 @@
 [ ] Perlin Island Generator
 [ ] Cthulhu
 
-### Apps and Websites
+### Work
 
 [ ] Sparklight
 [ ] StreamWork
 [ ] True Fans
 
-### Other Software Projects
+### Other Projects
 
 [ ] Tower
 [ ] Lighthouse
