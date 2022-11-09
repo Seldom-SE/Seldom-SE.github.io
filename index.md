@@ -17,10 +17,10 @@ working on my Bevy projects very actively. This active work continues to today.
 
 In May 2022, I earned my Software Engineering B.S. from Arizona State University with a 4.00 GPA.
 Since then, I've been living off the money I saved up and working on various projects in Bevy.
-After adding Rhai scripting to one of my games, I realized some of my work could be useful
-to other developers. Since then, I've been writing my games in a decoupled way,
-so I can pull out a piece of it and release it as a plugin. I've released 5 Bevy-related
-crates so far, and I currently have 3 more in the works.
+After adding Rhai scripting to [one of my games](#mystery-castle-may-2022---july-2022), I realized
+some of my work could be useful to other developers. Since then, I've been writing my games
+in a decoupled way, so I can pull out a piece of it and release it as a plugin. I've released
+5 Bevy-related crates so far, and I currently have 3 more in the works.
 
 I ordered these projects roughly by some combination of reverse-chronology and relevance.
 This portfolio is split into four main sections. Here's some links for navigation.
@@ -41,7 +41,8 @@ This portfolio is split into four main sections. Here's some links for navigatio
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/pmTPdGxYVYw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 `seldom_pixel` is my largest plugin and the plugin that I'm proudest of. It handles filters,
-animations, typefaces, particle emitters, `bevy_ecs_tilemap` integration, and much more,
+animations, typefaces, particle emitters,
+[`bevy_ecs_tilemap`](https://github.com/StarArawn/bevy_ecs_tilemap) integration, and much more,
 for limited color palette pixel art games. It leverages the color palette restriction
 to make it easy to create effects, and relatively easy for me to add effect-related features.
 I originally made it for [Bloodcurse Island](#bloodcurse-island), and I've been using it
@@ -116,13 +117,14 @@ Here's a sample of code that uses `seldom_state`.
 </video>
 
 `seldom_map_nav` adds navmesh generation, pathfinding, and navigation for tilemaps to Bevy. It uses
-the `navmesh` crate to generate navmeshes from a list of triangles, and to do pathfinding. It uses
-the `cdt` crate to generate a list of triangles from a list of vertices and constraints. The part
-that `seldom_map_nav` handles is generating a list of vertices and constraints from a tilemap,
-with varying levels of clearance. It also handles navigation and provides an API for developers
-to interface with the crate's features. The generated paths are occasionally poor,
-even on the greatest quality settings, so I'm keeping an eye out for other navmesh crates
-that I can depend on.
+the [`navmesh`](https://github.com/PsichiX/navmesh) crate to generate navmeshes from a list
+of triangles, and to do pathfinding. It uses
+the [`cdt`](https://github.com/Formlabs/foxtrot/tree/master/cdt) crate to generate a list
+of triangles from a list of vertices and constraints. The part that `seldom_map_nav` handles
+is generating a list of vertices and constraints from a tilemap, with varying levels of clearance.
+It also handles navigation and provides an API for developers to interface with the crate's
+features. The generated paths are occasionally poor, even on the greatest quality settings,
+so I'm keeping an eye out for other navmesh crates that I can depend on.
 
 Here's a sample of code that uses `seldom_map_nav`. It also uses `seldom_state`.
 
@@ -194,7 +196,8 @@ pub fn controls_plugin(app: &mut App) {
 [GitHub](https://github.com/Seldom-SE/seldom_interop)
 
 `seldom_interop` is a small crate that adds traits for Bevy position components. I made it
-so that I could use `seldom_map_nav` with `seldom_pixel`'s position components, while maintaining
+so that I could use [`seldom_map_nav`](#seldom_map_nav-september-2022---present)
+with [`seldom_pixel`](#seldom_pixel-july-2022---present)'s position components, while maintaining
 support for `Transform`.
 
 ## Games
@@ -211,7 +214,7 @@ support for `Transform`.
 <video src="https://user-images.githubusercontent.com/38388947/200714099-6aafe661-c5da-4ba3-80e4-375447296ae2.mp4" data-canonical-src="https://user-images.githubusercontent.com/38388947/200685525-9fbf9826-178e-4a71-9dd5-35431853f4ad.mp4" controls="controls" muted="muted" class="d-block rounded-bottom-2 border-top width-fit" style="max-height:640px;">
 </video>
 
-Click the play button at the top of this section to try the game! I've compiled it to WebAssembly,
+Click [here](#hayden-badger---seldom) to try the game! I've compiled it to WebAssembly,
 so you can play in your browser. The link leads to a webpage with a dark gray background. A black
 rectangle will appear when the game has downloaded, and some UI will show up once it's loaded.
 The game starts in the editor, which also has menus to change the controls and start the game.
@@ -268,7 +271,89 @@ to it eventually, with a more robust and abstract solver.
 
 ### Mystery Castle (May 2022 - July 2022)
 
+<video src="https://user-images.githubusercontent.com/38388947/200753144-97823c41-cd99-4ba9-99a6-4d9d1a929ca2.mp4" data-canonical-src="https://user-images.githubusercontent.com/38388947/200685525-9fbf9826-178e-4a71-9dd5-35431853f4ad.mp4" controls="controls" muted="muted" class="d-block rounded-bottom-2 border-top width-fit" style="max-height:640px;">
+</video>
+
+After I graduated college, I started working on a game with some friends. I pitched this idea
+for a mystery game to them, and they liked it, so we got started. I did the programming
+and scripting, and we also had an artist, writer, and another scripter. I got the game
+to a state where the team could start rapidly adding content, while I work on making the game
+look and feel better, but the artist dropped from the team due to being busy, and the rest
+of the team didn't have as much time as I did, so we put the project on indefinite hiatus.
+
+The game was inspired by Outer Wilds and Return of the Obra Dinn. It's a mystery game
+with time mechanics. This portfolio is public, though, so I don't want to spoil the central
+mechanic. I'm willing to spoil this temporary dialogue though.
+
+I focused on making the game very quickly extendable though LDtk, Rhai scripting, and .ron config
+files, so none of the game's content is hard-coded. The LDtk levels could specify script names
+to run on collision or interact, and the scripts could pull information from the levels,
+game state, data exposed from other scripts, and config. I think the scripting turned out well.
+
+```rhai
+switch time() {
+    "3:00" => {
+        dialog("The door is locked").wait();
+        add_journal("ohio_bedroom_door_locked");
+    }
+    "3:10" => {
+        dialog("Jarvis hears the sound of glass shattering").wait();
+        set_time("3:20");
+    }
+    "3:20" => dialog("The door is locked").wait(),
+    "3:30" => {
+        if flag("hall_door_unlocked") {
+            teleport("jarvis", [0, 4]);
+        } else {
+            investigate_start("jarvis", #{
+                background: "hall_door_background",
+            });
+            show_inventory();
+
+            loop {
+                switch prompt().wait() {
+                    "hall" => {
+                        dialog("This room is connected to the hall...", "jarvis").wait();
+                        dialog("I'm not sure where I was going with that", "jarvis").wait();
+                    }
+                    "ohio_bedroom_door_locked" => dialog("Yep, this thing sure is locked!", "jarvis").wait(),
+                    "gabriel_key" => dialog("Gabriel gave me the key for this door", "jarvis").wait(),
+                    "ohio_key" => {
+                        dialog("Jarvis unlocks the door").wait();
+                        set("hall_door_unlocked");
+                        break;
+                    }
+                    _ => dialog("I'm not sure what to do with this", "jarvis").wait(),
+                }
+            }
+
+            investigate_end();
+        }
+    }
+    _ => {
+        teleport("jarvis", [0, 4]);
+    }
+}
+```
+
 ### Voxmod (April 2022 - May 2022)
+
+*The following repository is not currently licensed, in case you're someone who is concerned*
+*about liability.*
+
+[GitHub](https://github.com/Seldom-SE/voxmod)
+
+<video src="https://user-images.githubusercontent.com/38388947/200760158-d14d366e-717e-40b7-a3c7-926f1d78b515.mp4" data-canonical-src="https://user-images.githubusercontent.com/38388947/200685525-9fbf9826-178e-4a71-9dd5-35431853f4ad.mp4" controls="controls" muted="muted" class="d-block rounded-bottom-2 border-top width-fit" style="max-height:640px;">
+</video>
+
+I started this game because I thought Minecraft wasn't doing enough to foster their mapping
+and modding communities, so only the more technically-skilled players could play and make maps
+and mods. So, the idea was to make an easily extensible voxel game framework, like Garry's Mod
+but for voxel games. Using Rob Swain's
+[`bevy-vertex-pulling`](https://github.com/superdump/bevy-vertex-pulling) as a guide,
+I got chunk-based voxel rendering working, and I made a very reusable menu UI. I stopped working
+on this shortly after graduating college, so I could work
+on [Mystery Castle](#mystery-castle-may-2022---july-2022).
 
 ### Dark Realms (August 2022 - November 2022)
 
