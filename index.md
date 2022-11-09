@@ -45,8 +45,8 @@ animations, typefaces, particle emitters,
 [`bevy_ecs_tilemap`](https://github.com/StarArawn/bevy_ecs_tilemap) integration, and much more,
 for limited color palette pixel art games. It leverages the color palette restriction
 to make it easy to create effects, and relatively easy for me to add effect-related features.
-I originally made it for [Bloodcurse Island](#bloodcurse-island), and I've been using it
-for all of my projects since then.
+I originally made it for [Bloodcurse Island](#bloodcurse-island-july-2022---august-2022),
+and I've been using it for all of my projects since then.
 
 The two main pieces of `seldom_pixel` are the asset processing and the rendering. Bevy `Image`s
 are processed into my own image representation that varies based on the type of asset.
@@ -214,7 +214,7 @@ support for `Transform`.
 <video src="https://user-images.githubusercontent.com/38388947/200714099-6aafe661-c5da-4ba3-80e4-375447296ae2.mp4" data-canonical-src="https://user-images.githubusercontent.com/38388947/200685525-9fbf9826-178e-4a71-9dd5-35431853f4ad.mp4" controls="controls" muted="muted" class="d-block rounded-bottom-2 border-top width-fit" style="max-height:640px;">
 </video>
 
-Click [here](#hayden-badger---seldom) to try the game! I've compiled it to WebAssembly,
+Click [here](star_machine.html) to try the game! I've compiled it to WebAssembly,
 so you can play in your browser. The link leads to a webpage with a dark gray background. A black
 rectangle will appear when the game has downloaded, and some UI will show up once it's loaded.
 The game starts in the editor, which also has menus to change the controls and start the game.
@@ -357,11 +357,47 @@ on [Mystery Castle](#mystery-castle-may-2022---july-2022).
 
 ### Dark Realms (August 2022 - November 2022)
 
+Dark Realms is a roguelike that's kind of like a zoomed-in Pacman. You collect loot from chests
+while avoiding ghosts. It's the black-and-white game featured at the end of `seldom_pixel`'s
+[demo video](https://youtu.be/pmTPdGxYVYw?t=90). I spent most of the development time getting
+my crates to a releasable state and releasing them. This is my most recent project showcased here.
+I recently went back to an older project that is not showcased here (since there's
+very little to show), which is a top-down team-based shooter in submarines. I'm two days of work
+into that project at the time of writing.
+
 ### Spindarella's Monsters (August 2022)
+
+[Play](https://iyes.itch.io/spindarellas-monsters) - [GitHub](https://github.com/BroovyJammy/gaem)
+
+This game was a blast to create. It was for Bevy's second game jam, whose theme was "COMBINE".
+I worked with some very talented gamedevs in the Bevy community, so we got a lot done.
+You can see the credits on [the Itch page](https://github.com/BroovyJammy/gaem). We made a
+turn-based tactics game where you build and send monstrosities into battle to impress a spider lady.
+I focused more on the in-game interface and effects, unit movement and attacking, AI, and design.
 
 ### Bloodcurse Island (July 2022 - August 2022)
 
+Bloodcurse Island was a game that I was inspired to start, influenced by my work
+on [Cotton](#cotton-july-2022). It's actually only a menu, and I spent the entire time working
+on [`seldom_pixel`](#seldom_pixel-july-2022---present). It's a pretty menu, though,
+and it's a great showcase for `seldom_pixel`. It's the second to last scene in `seldom_pixel`'s
+[demo video](https://youtu.be/pmTPdGxYVYw?t=76).
+
 ### Cotton (July 2022)
+
+[GitHub](https://github.com/Seldom-SE/cotton)
+
+![A game like Catan, with hexagonal tiles of terrain surrounded by water and game pieces](https://raw.githubusercontent.com/Seldom-SE/cotton/main/screenshot.png)
+
+Cotton, inspired by Catan, was a game that I made because I wanted to add more variation to Catan.
+I enjoy how the variation in the board setup can make for very different games. If all of the
+brick tiles are assigned unfavorable chits, the gameplay will be more focused on development cards,
+which don't need bricks. I expanded this variation by randomly assigning each tile, port, and chit
+independently of each other, instead of shuffling and dealing. Now, you might end up with a game
+with no mountains or three deserts. This one was more of a side project after
+[Mystery Castle](#mystery-castle-may-2022---july-2022) was put on hiatus, but I finished the core
+of the game, except you can't trade or win. But then I came up with new ideas for it,
+which became [Bloodcurse Island](#bloodcurse-island-july-2022---august-2022).
 
 ### Super Dodge Mania! (November 2018 - June 2020)
 
