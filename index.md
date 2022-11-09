@@ -202,6 +202,66 @@ support for `Transform`.
 
 ### Star Machine
 
+[Play](star_machine.html)
+
+*I recommend playing the game before you watch the video. Use the video as a fallback in case*
+*the game doesn't work or you get stuck on a level. This section's text contains instructions.*
+
+<video src="https://user-images.githubusercontent.com/38388947/200714099-6aafe661-c5da-4ba3-80e4-375447296ae2.mp4" data-canonical-src="https://user-images.githubusercontent.com/38388947/200685525-9fbf9826-178e-4a71-9dd5-35431853f4ad.mp4" controls="controls" muted="muted" class="d-block rounded-bottom-2 border-top width-fit" style="max-height:640px;">
+</video>
+
+Click the play button at the top of this section to try the game! I've compiled it to WebAssembly,
+so you can play in your browser. The link leads to a webpage with a dark gray background. A black
+rectangle will appear when the game has downloaded, and some UI will show up once it's loaded.
+The game starts in the editor, which also has menus to change the controls and start the game.
+A quirk about deploying Bevy games to WebAssembly is that it uses scan codes instead of key codes.
+This means that even if you use an alternative keyboard layout, you will want to set your controls
+to QWERTY. The game starts in Dvorak by default, so there will be a button that says,
+"Controls: Dvorak". Click that button so it changes to "Controls: QWERTY". After that, click
+the "Play" button to start the game. If you need to restart a level, press Escape, and then click
+"Test".
+
+Use WASD, or your keyboard's equivalent, to move your character, and press space to place
+or pick up a wire. You can hold the WASD keys, or spam them, whichever you prefer. You can also
+hold space while moving to place or pick up the wire on each tile you move to. The last two levels
+in the game (the second and third ones with lasers) are really hard, so you may want to peek
+at the video for hints. There are supposed to be more levels before those ones,
+but this is where I left off before I put the project on hold.
+
+You can use the level editor as well, but there are some things you will need to keep in mind.
+An empty level is loaded as soon as you start the game, so you may start placing tiles immediately.
+The bottom-left corner of the tilemap is at the center of the screen, so try placing tiles closer
+to the top-right of the screen to get your bearings. Use the WASD keys to move the camera
+(remember to set your controls to QWERTY) to a better position. Experiment with the "Palette",
+"Layer", "Tile Properties", and "Tools" windows to learn the editor. You must place at least one
+Spawn tile, else the game will crash when you test the level. To test your level, click "Test",
+and to return to the editor, either complete your level or press Escape. The game will crash if you
+place a tile at an edge of the tilemap, or make it possible for a laser to emit out of the tilemap.
+
+Star Machine was never built for WebAssembly, but I made this build specifically
+for this portfolio. Unfortunately, WebAssembly requires using `bevy_ecs_tilemap`'s `atlas` feature,
+which leaves visual artifacts at the edges of tiles. Also, saving and loading levels from disk
+doesn't work on WebAssembly. Anyway, I hope you enjoy!
+
+Star Machine is my proudest work, and my most complex game. I originally came up with the idea
+in middle school, and a friend and I would spend class time designing puzzles on graph paper,
+which we would have each other solve at lunch. It was inspired by Minecraft's redstone,
+and we built a couple prototypes within Minecraft, before a teacher told me I should just make
+a standalone game. In senior year of high school, two friends and I made a prototype in JavaScript,
+but it lacked most of the features. I made this version of the game on my own in Bevy,
+and it's much more robust. I have many more ideas for this game, and I want to extend it
+with hundreds of levels in the future.
+
+The most complex part of the game, and the most difficult piece of software I've ever written,
+is the solver. It's the part of the game that analyzes how the components are connected via
+wires and lasers, and determines what should be on and what should be off. What makes the solver
+so complex is that it is possible to create cycles that either enforce that the cycle should
+stay in the same power state, or contradict itself, making it impossible for it to be in either
+state. I would have made a much simpler algorithm that allows the game to make contradictions,
+but I wanted to use these contradictions as a game mechanic, flavored as alternating current.
+Having to update the solver every time I wanted to add a new mechanic is what drove me away
+from this project, but I plan to return to it eventually, with a more robust and abstract solver.
+
 ### Mystery Castle
 
 ### Voxmod
