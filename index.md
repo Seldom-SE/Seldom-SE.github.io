@@ -22,6 +22,7 @@ to other developers. Since then, I've been writing my games in a decoupled way,
 so I can pull out a piece of it and release it as a plugin. I've released 5 Bevy-related
 crates so far, and I currently have 3 more in the works.
 
+I ordered these projects roughly by some combination of reverse-chronology and relevance.
 This portfolio is split into four main sections. Here's some links for navigation.
 
 - [Bevy Plugins](#bevy-plugins) (5 items)
@@ -33,7 +34,7 @@ This portfolio is split into four main sections. Here's some links for navigatio
 
 [Back to top](#hayden-badger---seldom)
 
-### `seldom_pixel`
+### `seldom_pixel` (July 2022 - Present)
 
 [GitHub](https://github.com/Seldom-SE/seldom_pixel)
 
@@ -82,7 +83,7 @@ commands
     .insert(Name::new("Player"));
 ```
 
-### `seldom_state`
+### `seldom_state` (September 2022 - Present)
 
 [GitHub](https://github.com/Seldom-SE/seldom_state)
 
@@ -107,7 +108,7 @@ Here's a sample of code that uses `seldom_state`.
 )
 ```
 
-### `seldom_map_nav`
+### `seldom_map_nav` (September 2022 - Present)
 
 [GitHub](https://github.com/Seldom-SE/seldom_map_nav)
 
@@ -162,7 +163,7 @@ let pathfind = Pathfind::new(
 )
 ```
 
-### `seldom_fn_plugin`
+### `seldom_fn_plugin` (August 2022 - Present)
 
 [GitHub](https://github.com/Seldom-SE/seldom_fn_plugin)
 
@@ -188,7 +189,7 @@ pub fn controls_plugin(app: &mut App) {
 }
 ```
 
-### `seldom_interop`
+### `seldom_interop` (September 2022 - Present)
 
 [GitHub](https://github.com/Seldom-SE/seldom_interop)
 
@@ -200,7 +201,7 @@ support for `Transform`.
 
 [Back to top](#hayden-badger---seldom)
 
-### Star Machine
+### Star Machine (December 2021 - April 2022)
 
 [Play](star_machine.html)
 
@@ -246,64 +247,67 @@ doesn't work on WebAssembly. Anyway, I hope you enjoy!
 Star Machine is my proudest work, and my most complex game. I originally came up with the idea
 in middle school, and a friend and I would spend class time designing puzzles on graph paper,
 which we would have each other solve at lunch. It was inspired by Minecraft's redstone,
-and we built a couple prototypes within Minecraft, before a teacher told me I should just make
+and we built a couple prototypes within Minecraft, until a teacher told me I should just make
 a standalone game. In senior year of high school, two friends and I made a prototype in JavaScript,
-but it lacked most of the features. I made this version of the game on my own in Bevy,
-and it's much more robust. I have many more ideas for this game, and I want to extend it
-with hundreds of levels in the future.
+but it lacked most of the features. I worked on an earlier version in Bevy for my honors thesis
+from February 2021 to June 2021, but I dropped out of my school's honors program and stopped work
+on the game. Then, in December 2021, I restarted and made this version of the game
+and it's much more robust than all previous versions. I have many more ideas for this game,
+and I want to extend it with hundreds of levels in the future.
 
 The most complex part of the game, and the most difficult piece of software I've ever written,
 is the solver. It's the part of the game that analyzes how the components are connected via
 wires and lasers, and determines what should be on and what should be off. What makes the solver
 so complex is that it is possible to create cycles that either enforce that the cycle should
 stay in the same power state, or contradict itself, making it impossible for it to be in either
-state. I would have made a much simpler algorithm that allows the game to make contradictions,
-but I wanted to use these contradictions as a game mechanic, flavored as alternating current.
-Having to update the solver every time I wanted to add a new mechanic is what drove me away
-from this project, but I plan to return to it eventually, with a more robust and abstract solver.
+state. I would have made a much simpler algorithm that allows the game to make inconsistencies
+and just design around it, but I wanted to incorporate these contradictions into a game mechanic,
+flavored as alternating current. Having to update the solver every time I wanted
+to add a new mechanic is what drove me away from this project, but I plan to return
+to it eventually, with a more robust and abstract solver.
 
-### Mystery Castle
+### Mystery Castle (May 2022 - July 2022)
 
-### Voxmod
+### Voxmod (April 2022 - May 2022)
 
-### Dark Realms
+### Dark Realms (August 2022 - November 2022)
 
-### Spindarella's Monsters
+### Spindarella's Monsters (August 2022)
 
-### Bloodcurse Island
+### Bloodcurse Island (July 2022 - August 2022)
 
-### Cotton
+### Cotton (July 2022)
 
-### Super Dodge Mania!
+### Super Dodge Mania! (November 2018 - June 2020)
 
-### CPI 311 Game Engine
+### CPI 311 Game Engine (August 2020 - December 2020)
 
-### Robbin' and Rollin'
+### Robbin' and Rollin' (October 2019 - December 2019)
 
-### Bevy Cursed Tomb
+### Bevy Cursed Tomb (February 2022 - March 2022)
 
-### Perlin Island Generator
+### Perlin Island Generator (July 2020 - August 2020)
 
-### Cthulhu
+### Cthulhu (October 2019 - December 2019)
 
 ## Work
 
 [Back to top](#hayden-badger---seldom)
 
-### Sparklight
+### Sparklight (June 2021 - August 2021)
 
-### StreamWork
+### StreamWork (September 2018 - January 2021)
 
-### True Fans
+### True Fans (September 2021 - April 2022)
 
 ## Other Projects
 
 [Back to top](#hayden-badger---seldom)
 
-### Tower
+### Tower (February 2022)
 
-### Lighthouse
+### Lighthouse (October 2018 - April 2019)
 
-### ChromAR
+### ChromAR (September 2019)
 
-### GitHub Grader
+### GitHub Grader (January 2021 - May 2021)
