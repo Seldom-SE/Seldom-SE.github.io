@@ -11,7 +11,7 @@ my more notable projects. First, here's a brief introduction.
 
 I've used various tools to make games since 2008, but I didn't learn Rust until 2019,
 when I was in college. It quickly became my favorite language, so I started many projects
-in it. I used Amethyst on and off, until I discovered Bevy 0.4 in December 2020. I used it
+in it. I used Amethyst on and off, until I got intoBevy 0.4 in December 2020. I used it
 on and off, until September 2021, when I became less busy with school and work, and I started
 working on my Bevy projects very actively. This active work continues to today.
 
@@ -401,7 +401,31 @@ which became [Bloodcurse Island](#bloodcurse-island-july-2022---august-2022).
 
 ### Super Dodge Mania! (November 2018 - June 2020)
 
+*CW: flashing lights*
+
+<video src="https://user-images.githubusercontent.com/38388947/200797425-0fb3d389-28c3-46f6-bdb7-cc424ec9edd0.mp4" data-canonical-src="https://user-images.githubusercontent.com/38388947/200685525-9fbf9826-178e-4a71-9dd5-35431853f4ad.mp4" controls="controls" muted="muted" class="d-block rounded-bottom-2 border-top width-fit" style="max-height:640px;">
+</video>
+
+In high school, I made a game called `dodger.py` in Python and pygame. Later, to learn Unity,
+I decided to reimplement `dodger.py`, which became Super Dodge Mania!. I kept working on it
+on and off, keeping the simple gameplay, but adding more and more polish. I taught myself CG
+to write the shaders for this game. I also made the background music (unmute the video player to
+hear it), which came out well for a first song. The song gets gradually more bitcrushed
+as the player loses health. I only tested it on my old MacBook, which can't record video
+while playing the game, so I recorded this video on my main machine, which is much faster. So,
+I just discovered that some of the effects, such as the hitstun and screenshake, don't work
+as well on faster machines. I never ended up releasing Super Dodge Mania! because the codebase
+is a disaster, and it would be easier to start over than to fix all the bugs. After all,
+it's my first Unity project.
+
 ### CPI 311 Game Engine (August 2020 - December 2020)
+
+In college, I took a Game Engine Development class, which had one project over the entire semester:
+build a game engine on top of MonoGame. We had to implement rendering, shaders, a Unity-like
+GameObject, physics, a hierarchy system, and a simple game that proves the functionality
+of the engine. I went above and beyond in this class, implementing an ECS (Just the front-end
+for one. I didn't know about the storage pattern at the time) and a scheduler, inspired by Bevy
+(which I discovered at some point during this class) and Amethyst.
 
 ### Robbin' and Rollin' (October 2019 - December 2019)
 
