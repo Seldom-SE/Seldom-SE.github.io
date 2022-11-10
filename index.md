@@ -55,8 +55,6 @@ in the world, onto an `Image` that represents the screen.
 
 Here's a sample of code that uses `seldom_pixel`.
 
-<!-- TODO fix this style -->
-
 ```rust
 *cursor = PxCursor::Filter {
     idle: assets.invert.clone(),
