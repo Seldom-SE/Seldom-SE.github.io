@@ -465,9 +465,34 @@ I made this island generator in Amethyst.
 
 ### Sparklight (June 2021 - August 2021)
 
+I was brought on as an intern to a team that creates user-facing code. In my time here, I developed
+APIs in ASP.NET Core to replace some legacy code and expand a product's capabilities.
+I was involved in the process of Scrum and participated in requirements-gathering meetings.
+I learned a lot about software development in larger companies and workplace communication.
+
 ### StreamWork (September 2018 - January 2021)
 
+[StreamWork](https://www.streamwork.live/)
+
+StreamWork was a startup that I co-founded! We, a small team with only two developers, created
+an educational live-streaming website that raised $27,000 in grants. It was built in ASP.NET Core
+on Microsoft ASURE, using C#, HTML/CSS, and JavaScript, with a SQL database. The website
+was fully-functioning, with OBS-compatible live-streaming, video archiving, live chat,
+a comments section, view counting, video search, customizable profiles and profile pictures,
+an email notification system, and a payment system. I learned how to work on a team under time
+and budget restraints. I'm proud of what my team and I built, and it's satisfying to see what we
+can build over a long period of time.
+
 ### True Fans (September 2021 - April 2022)
+
+[Client](https://roguemedialive.com/)
+
+This wasn't work, but it was similar. Four peers and I developed an iOS/Android social medium
+targeting sports fans for an external client as our capstone project. It was written
+in React Native with Typescript, using Firebase/Firestore for the database. I wrote
+most of the backend and database code. We used Agile Scrum to organize, and personally met
+with the client to gather requirements. The app has not been released yet, but we finished
+the work that we were responsible for, and the client was very pleased with the end result.
 
 ## Other Projects
 
@@ -475,8 +500,62 @@ I made this island generator in Amethyst.
 
 ### Tower (February 2022)
 
+[GitHub](https://github.com/Seldom-SE/tower)
+
+I wrote an esoteric programming language with painfully vertical data storage. You have to store
+all of your data in 3 registers, but you can compress the data as much as you want. The challenge
+is avoiding overwriting data that you still need. Here's a program that makes sure your brackets
+are balanced:
+
+```
+a:-1
+b:-1
+b[ab]
+?c[
+    a,
+    ?!||=a;)=a;]=a;}[
+        ca
+        #b
+        ?!=acb:-1
+        c:0
+    ?c]
+    ?!=a;([
+        a;)
+        b[ab]
+    ?c]
+    ?!=a;[[
+        a;]
+        b[ab]
+    ?c]
+    ?!=a;{[
+        a;}
+        b[ab]
+    ?c]
+?!|=a;\n=b:-1]
+a:0
+#b
+.=a:-1
+```
+
 ### Lighthouse (October 2018 - April 2019)
+
+In my freshman year of college, three of my peers and I got a research grant for this entry
+to the ASURE VR Innovation Challenge. We made an app that creates safe walking routes between
+locations based on crime data that we got access to from police departments. We didn't win
+the competition, but we were recognized for being a team of freshmen amidst teams of seniors
+and graduate students. It was written in Unity, and I did mostly frontend work, including UI,
+displaying maps, and rendering the AR camera.
 
 ### ChromAR (September 2019)
 
+This is a hackathon project that I worked on with one other. It's an iOS app for the colorblind
+that identifies colors, using augmented reality. It was written in Swift. I worked on the backend,
+algorithms, and image processing.
+
 ### GitHub Grader (January 2021 - May 2021)
+
+This is a Node.js/JavaScript project that a peer and I worked on for an instructor,
+under our school's honors program, to help her with grading students' projects. It pulls students'
+commit information from GitHub and analyzes it to determine their frequency of work
+and other information, using lines of code count and user story points. It uses the GitHub
+REST API.
