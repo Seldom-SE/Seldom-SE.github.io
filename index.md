@@ -211,7 +211,7 @@ support for `Transform`.
 *I recommend playing the game before you watch the video. Use the video as a fallback in case*
 *the game doesn't work or you get stuck on a level. This section's text contains instructions.*
 
-<video src="https://user-images.githubusercontent.com/38388947/200714099-6aafe661-c5da-4ba3-80e4-375447296ae2.mp4" data-canonical-src="https://user-images.githubusercontent.com/38388947/200685525-9fbf9826-178e-4a71-9dd5-35431853f4ad.mp4" controls="controls" muted="muted" class="d-block rounded-bottom-2 border-top width-fit" style="max-height:640px;">
+<video src="https://user-images.githubusercontent.com/38388947/200714099-6aafe661-c5da-4ba3-80e4-375447296ae2.mp4" data-canonical-src="https://user-images.githubusercontent.com/38388947/200714099-6aafe661-c5da-4ba3-80e4-375447296ae2.mp4" controls="controls" muted="muted" class="d-block rounded-bottom-2 border-top width-fit" style="max-height:640px;">
 </video>
 
 Click [here](star_machine.html) to try the game! I've compiled it to WebAssembly,
@@ -271,7 +271,7 @@ to it eventually, with a more robust and abstract solver.
 
 ### Mystery Castle (May 2022 - July 2022)
 
-<video src="https://user-images.githubusercontent.com/38388947/200753144-97823c41-cd99-4ba9-99a6-4d9d1a929ca2.mp4" data-canonical-src="https://user-images.githubusercontent.com/38388947/200685525-9fbf9826-178e-4a71-9dd5-35431853f4ad.mp4" controls="controls" muted="muted" class="d-block rounded-bottom-2 border-top width-fit" style="max-height:640px;">
+<video src="https://user-images.githubusercontent.com/38388947/200753144-97823c41-cd99-4ba9-99a6-4d9d1a929ca2.mp4" data-canonical-src="https://user-images.githubusercontent.com/38388947/200753144-97823c41-cd99-4ba9-99a6-4d9d1a929ca2.mp4" controls="controls" muted="muted" class="d-block rounded-bottom-2 border-top width-fit" style="max-height:640px;">
 </video>
 
 After I graduated college, I started working on a game with some friends. I pitched this idea
@@ -343,7 +343,7 @@ switch time() {
 
 [GitHub](https://github.com/Seldom-SE/voxmod)
 
-<video src="https://user-images.githubusercontent.com/38388947/200760158-d14d366e-717e-40b7-a3c7-926f1d78b515.mp4" data-canonical-src="https://user-images.githubusercontent.com/38388947/200685525-9fbf9826-178e-4a71-9dd5-35431853f4ad.mp4" controls="controls" muted="muted" class="d-block rounded-bottom-2 border-top width-fit" style="max-height:640px;">
+<video src="https://user-images.githubusercontent.com/38388947/200760158-d14d366e-717e-40b7-a3c7-926f1d78b515.mp4" data-canonical-src="https://user-images.githubusercontent.com/38388947/200760158-d14d366e-717e-40b7-a3c7-926f1d78b515.mp4" controls="controls" muted="muted" class="d-block rounded-bottom-2 border-top width-fit" style="max-height:640px;">
 </video>
 
 I started this game because I thought Minecraft wasn't doing enough to foster their mapping
@@ -403,7 +403,7 @@ which became [Bloodcurse Island](#bloodcurse-island-july-2022---august-2022).
 
 *CW: flashing lights*
 
-<video src="https://user-images.githubusercontent.com/38388947/200797425-0fb3d389-28c3-46f6-bdb7-cc424ec9edd0.mp4" data-canonical-src="https://user-images.githubusercontent.com/38388947/200685525-9fbf9826-178e-4a71-9dd5-35431853f4ad.mp4" controls="controls" muted="muted" class="d-block rounded-bottom-2 border-top width-fit" style="max-height:640px;">
+<video src="https://user-images.githubusercontent.com/38388947/200797425-0fb3d389-28c3-46f6-bdb7-cc424ec9edd0.mp4" data-canonical-src="https://user-images.githubusercontent.com/38388947/200797425-0fb3d389-28c3-46f6-bdb7-cc424ec9edd0.mp4" controls="controls" muted="muted" class="d-block rounded-bottom-2 border-top width-fit" style="max-height:640px;">
 </video>
 
 In high school, I made a game called `dodger.py` in Python and pygame. Later, to learn Unity,
@@ -429,9 +429,33 @@ for one. I didn't know about the storage pattern at the time) and a scheduler, i
 
 ### Robbin' and Rollin' (October 2019 - December 2019)
 
+<video src="https://user-images.githubusercontent.com/38388947/200965224-82621938-ddc3-49aa-8022-7f938639494f.mp4" data-canonical-src="https://user-images.githubusercontent.com/38388947/200965224-82621938-ddc3-49aa-8022-7f938639494f.mp4" controls="controls" muted="muted" class="d-block rounded-bottom-2 border-top width-fit" style="max-height:640px;">
+</video>
+
+This is the final project for my Game Development I class. It was in a team of 6, but I was
+the only experienced game developer, so I ended up doing all of the sounds, almost all
+of the programming, most of the design, and some of the art. It's very fun! The goal is to gather
+the most money before the time runs out. There's a constant sense of risk and reward,
+because the player has to decide which items to go for based on the type, distance, proximity
+to the opponent, items they and the opponent have, etc. Picking up money bags leaves less space
+in your inventory and decreases your walking speed, but bringing them back to spawn
+is the only way to get money. My name isn't credited in the game because I've undergone a full name
+change, which I can prove.
+
 ### Bevy Cursed Tomb (February 2022 - March 2022)
 
+[Play](https://mdenchev.itch.io/bevy-cursed-tomb) - [GitHub](https://github.com/mdenchev/bevy_jam_1)
+
+I teamed up with 4 other people for the first Bevy Game Jam. We made a game where you
+have to kill 50 enemies as quickly as possible, but you can go back in time to the beginning
+of the game as many times as you want to improve your time. I made the art, and the item
+and inventory system.
+
 ### Perlin Island Generator (July 2020 - August 2020)
+
+![An abstract, pixelated, top-down view of an islad](https://user-images.githubusercontent.com/38388947/200968846-00ff741b-9e31-4e4c-af29-0a7bd92192f5.png)
+
+I made this island generator in Amethyst.
 
 ### Cthulhu (October 2019 - December 2019)
 
