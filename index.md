@@ -11,7 +11,7 @@ my more notable projects. First, here's a brief introduction.
 
 I've used various tools to make games since 2008, but I didn't learn Rust until 2019,
 when I was in college. It quickly became my favorite language, so I started many projects
-in it. I used Amethyst on and off, until I got intoBevy 0.4 in December 2020. I used it
+in it. I used Amethyst on and off, until I got into Bevy 0.4 in December 2020. I used it
 on and off, until September 2021, when I became less busy with school and work, and I started
 working on my Bevy projects very actively. This active work continues to today.
 
@@ -89,9 +89,9 @@ commands
 [GitHub](https://github.com/Seldom-SE/seldom_state)
 
 `seldom_state` is my most popular crate. It adds a component-based state machine that you can add
-to your entities. You can define your own states and triggers and automatically add and remove
-bundles based on the current state. Most of the implementation involved Rust type system magic
-and Bevy reflection, which was fun to work with and resulted in a pretty clean API.
+to your entities. You can define your own states and triggers, and you can automatically add
+and remove bundles based on the current state. Most of the implementation involved Rust type system
+magic and Bevy reflection, which was fun to work with and resulted in a pretty clean API.
 Once components-as-bundles lands in a Bevy release, I'll be able to remove all these tuples
 from the API.
 
@@ -170,7 +170,7 @@ let pathfind = Pathfind::new(
 [GitHub](https://github.com/Seldom-SE/seldom_fn_plugin)
 
 `seldom_fn_plugin` is a small crate that improves the ergonomics of Bevy plugins by avoiding
-them entirely. The example below shows a basic usage, but it can also help avoid using
+them entirely. The example below shows a basic usage, but it can also help to avoid using
 `PhantomData` and making unnecessary clones.
 
 ```rust
@@ -216,7 +216,7 @@ support for `Transform`.
 
 Click [here](star_machine.html) to try the game! I've compiled it to WebAssembly,
 so you can play in your browser. The link leads to a webpage with a dark gray background. A black
-rectangle will appear when the game has downloaded, and some UI will show up once it's loaded.
+rectangle will appear when the game has downloaded and some UI will show up once it's loaded.
 The game starts in the editor, which also has menus to change the controls and start the game.
 A quirk about deploying Bevy games to WebAssembly is that it uses scan codes instead of key codes.
 This means that even if you use an alternative keyboard layout, you will want to set your controls
@@ -248,15 +248,15 @@ which leaves visual artifacts at the edges of tiles. Also, saving and loading le
 doesn't work on WebAssembly. Anyway, I hope you enjoy!
 
 Star Machine is my proudest work, and my most complex game. I originally came up with the idea
-in middle school, and a friend and I would spend class time designing puzzles on graph paper,
+in middle school. A friend and I would spend class time designing puzzles on graph paper,
 which we would have each other solve at lunch. It was inspired by Minecraft's redstone,
 and we built a couple prototypes within Minecraft, until a teacher told me I should just make
 a standalone game. In senior year of high school, two friends and I made a prototype in JavaScript,
 but it lacked most of the features. I worked on an earlier version in Bevy for my honors thesis
-from February 2021 to June 2021, but I dropped out of my school's honors program and stopped work
-on the game. Then, in December 2021, I restarted and made this version of the game
-and it's much more robust than all previous versions. I have many more ideas for this game,
-and I want to extend it with hundreds of levels in the future.
+from February 2021 to June 2021, but I left my school's honors program and stopped work
+on the game. Then, in December 2021, I restarted and made this version of the game. It's
+much more robust than all previous versions. I have many more ideas for this game, and I want
+to extend it with hundreds of levels in the future.
 
 The most complex part of the game, and the most difficult piece of software I've ever written,
 is the solver. It's the part of the game that analyzes how the components are connected via
@@ -265,16 +265,16 @@ so complex is that it is possible to create cycles that either enforce that the 
 stay in the same power state, or contradict itself, making it impossible for it to be in either
 state. I would have made a much simpler algorithm that allows the game to make inconsistencies
 and just design around it, but I wanted to incorporate these contradictions into a game mechanic,
-flavored as alternating current. Having to update the solver every time I wanted
-to add a new mechanic is what drove me away from this project, but I plan to return
-to it eventually, with a more robust and abstract solver.
+flavored as alternating current. Having to update the solver every time I wanted to add a new
+mechanic is what drove me away from this project, but I plan to return to it eventually,
+with a more robust and abstract solver.
 
 ### Mystery Castle (May 2022 - July 2022)
 
 <video src="https://user-images.githubusercontent.com/38388947/200753144-97823c41-cd99-4ba9-99a6-4d9d1a929ca2.mp4" data-canonical-src="https://user-images.githubusercontent.com/38388947/200753144-97823c41-cd99-4ba9-99a6-4d9d1a929ca2.mp4" controls="controls" muted="muted" class="d-block rounded-bottom-2 border-top width-fit" style="max-height:640px;">
 </video>
 
-After I graduated college, I started working on a game with some friends. I pitched this idea
+After I graduated from college, I started working on a game with some friends. I pitched this idea
 for a mystery game to them, and they liked it, so we got started. I did the programming
 and scripting, and we also had an artist, writer, and another scripter. I got the game
 to a state where the team could start rapidly adding content, while I work on making the game
@@ -346,9 +346,9 @@ switch time() {
 <video src="https://user-images.githubusercontent.com/38388947/200760158-d14d366e-717e-40b7-a3c7-926f1d78b515.mp4" data-canonical-src="https://user-images.githubusercontent.com/38388947/200760158-d14d366e-717e-40b7-a3c7-926f1d78b515.mp4" controls="controls" muted="muted" class="d-block rounded-bottom-2 border-top width-fit" style="max-height:640px;">
 </video>
 
-I started this game because I thought Minecraft wasn't doing enough to foster their mapping
-and modding communities, so only the more technically-skilled players could play and make maps
-and mods. So, the idea was to make an easily extensible voxel game framework, like Garry's Mod
+I started this game because I thought Minecraft wasn't doing enough to foster its mapping
+and modding communities. So only the more technically-skilled players could play and make maps
+and mods. The idea was to make an easily extensible voxel game framework, like Garry's Mod
 but for voxel games. Using Rob Swain's
 [`bevy-vertex-pulling`](https://github.com/superdump/bevy-vertex-pulling) as a guide,
 I got chunk-based voxel rendering working, and I made a very reusable menu UI. I stopped working
@@ -357,12 +357,12 @@ on [Mystery Castle](#mystery-castle-may-2022---july-2022).
 
 ### Dark Realms (August 2022 - November 2022)
 
-Dark Realms is a roguelike that's kind of like a zoomed-in Pacman. You collect loot from chests
+Dark Realms is a roguelike that's like a zoomed-in Pacman. You collect loot from chests
 while avoiding ghosts. It's the black-and-white game featured at the end of `seldom_pixel`'s
 [demo video](https://youtu.be/pmTPdGxYVYw?t=90). I spent most of the development time getting
 my crates to a releasable state and releasing them. This is my most recent project showcased here.
 I recently went back to an older project that is not showcased here (since there's
-very little to show), which is a top-down team-based shooter in submarines. I'm two days of work
+very little to show), which is a top-down team-based shooter in submarines. I put two days of work
 into that project at the time of writing.
 
 ### Spindarella's Monsters (August 2022)
@@ -372,8 +372,9 @@ into that project at the time of writing.
 This game was a blast to create. It was for Bevy's second game jam, whose theme was "COMBINE".
 I worked with some very talented gamedevs in the Bevy community, so we got a lot done.
 You can see the credits on [the Itch page](https://github.com/BroovyJammy/gaem). We made a
-turn-based tactics game where you build and send monstrosities into battle to impress a spider lady.
-I focused more on the in-game interface and effects, unit movement and attacking, AI, and design.
+turn-based tactics game where you build and send monstrosities into battle to impress a spider
+lady. I focused more on the in-game interface and effects, unit movement and attacking, AI,
+and design.
 
 ### Bloodcurse Island (July 2022 - August 2022)
 
@@ -439,8 +440,7 @@ the most money before the time runs out. There's a constant sense of risk and re
 because the player has to decide which items to go for based on the type, distance, proximity
 to the opponent, items they and the opponent have, etc. Picking up money bags leaves less space
 in your inventory and decreases your walking speed, but bringing them back to spawn
-is the only way to get money. My name isn't credited in the game because I've undergone a full name
-change, which I can prove.
+is the only way to get money.
 
 ### Bevy Cursed Tomb (February 2022 - March 2022)
 
@@ -453,11 +453,21 @@ and inventory system.
 
 ### Perlin Island Generator (July 2020 - August 2020)
 
-![An abstract, pixelated, top-down view of an islad](https://user-images.githubusercontent.com/38388947/200968846-00ff741b-9e31-4e4c-af29-0a7bd92192f5.png)
+![An abstract, pixelated, top-down view of an island](https://user-images.githubusercontent.com/38388947/200968846-00ff741b-9e31-4e4c-af29-0a7bd92192f5.png)
 
 I made this island generator in Amethyst.
 
 ### Cthulhu (October 2019 - December 2019)
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/tHMylnw0zy8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+I made this game as a project for my Game Development I class, under my school's honors college.
+It was inspired by Factorio, but the goal is to survive as long as possible. The normal enemies
+can't destroy your buildings, but they do distract units, making it difficult to build if you
+don't get rid of them. The final boss cannot be defeated and leaves a trail of tiles
+that cannot be built on, so the endgame involves building what you need in confined spaces.
+Unfortunately, the endgame drags on, because the enemies eventually create lag, slowing down
+the game.
 
 ## Work
 
@@ -487,7 +497,7 @@ can build over a long period of time.
 
 [Client](https://roguemedialive.com/)
 
-This wasn't work, but it was similar. Four peers and I developed an iOS/Android social medium
+Four peers and I developed an iOS/Android social medium
 targeting sports fans for an external client as our capstone project. It was written
 in React Native with Typescript, using Firebase/Firestore for the database. I wrote
 most of the backend and database code. We used Agile Scrum to organize, and personally met
@@ -549,7 +559,7 @@ displaying maps, and rendering the AR camera.
 ### ChromAR (September 2019)
 
 This is a hackathon project that I worked on with one other. It's an iOS app for the colorblind
-that identifies colors, using augmented reality. It was written in Swift. I worked on the backend,
+that identifies colors, using AR. It was written in Swift. I worked on the backend,
 algorithms, and image processing.
 
 ### GitHub Grader (January 2021 - May 2021)
