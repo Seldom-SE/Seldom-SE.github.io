@@ -46,7 +46,7 @@ animations, typefaces, particle emitters,
 for limited color palette pixel art games. It leverages the color palette restriction
 to make it easy to create effects, and relatively easy for me to add effect-related features.
 I originally made it for [Bloodcurse Island](#bloodcurse-island-july-2022---august-2022),
-and I've been using it for all of my projects since then.
+and I've been using it for all of my Bevy projects since then.
 
 The two main pieces of `seldom_pixel` are the asset processing and the rendering. Bevy `Image`s
 are processed into my own image representation that varies based on the type of asset.
@@ -90,20 +90,18 @@ commands
 to your entities. You can define your own states and triggers, and you can automatically add
 and remove bundles based on the current state. Most of the implementation involved Rust type system
 magic and Bevy reflection, which was fun to work with and resulted in a pretty clean API.
-Once components-as-bundles lands in a Bevy release, I'll be able to remove all these tuples
-from the API.
 
 Here's a sample of code that uses `seldom_state`.
 
 ```rust
 .insert(
-    StateMachine::new((Move,))
-        .trans::<(Move,)>(JustPressedTrigger(Action::Melee), (Melee,))
-        .trans::<(Melee,)>(DoneTrigger::success(), (Move,))
-        .remove_on_exit::<(Melee,), PxAnimationBundle>()
-        .trans::<(Move,)>(JustPressedTrigger(Action::Shoot), (Shoot,))
-        .trans::<(Shoot,)>(DoneTrigger::success(), (Move,))
-        .remove_on_exit::<(Shoot,), PxAnimationBundle>(),
+    StateMachine::new(Move)
+        .trans::<Move>(JustPressedTrigger(Action::Melee), Melee)
+        .trans::<Melee>(DoneTrigger::success(), Move)
+        .remove_on_exit::<Melee, PxAnimationBundle>()
+        .trans::<Move>(JustPressedTrigger(Action::Shoot), Shoot)
+        .trans::<Shoot>(DoneTrigger::success(), Move)
+        .remove_on_exit::<Shoot, PxAnimationBundle>(),
 )
 ```
 
@@ -139,8 +137,8 @@ let pathfind = Pathfind::new(
 // ...
 
 .insert(
-    StateMachine::new((Idle,))
-        .trans::<(Idle,)>(
+    StateMachine::new(Idle)
+        .trans::<Idle>(
             Near {
                 target: player,
                 range: TRACK_PLAYER_RANGE,
@@ -158,7 +156,7 @@ let pathfind = Pathfind::new(
                 target: player,
                 range: LOSE_PLAYER_RANGE,
             }),
-            (Idle,),
+            Idle,
         ),
 )
 ```
@@ -212,6 +210,8 @@ support for `Transform`.
 <video src="https://user-images.githubusercontent.com/38388947/200714099-6aafe661-c5da-4ba3-80e4-375447296ae2.mp4" data-canonical-src="https://user-images.githubusercontent.com/38388947/200714099-6aafe661-c5da-4ba3-80e4-375447296ae2.mp4" controls="controls" muted="muted" class="d-block rounded-bottom-2 border-top width-fit" style="max-height:640px;">
 </video>
 
+#### Instructions
+
 Click [here](star_machine.html) to try the game! I've compiled it to WebAssembly,
 so you can play in your browser. The link leads to a webpage with a dark gray background. A black
 rectangle will appear when the game has downloaded and some UI will show up once it's loaded.
@@ -245,16 +245,10 @@ for this portfolio. Unfortunately, WebAssembly requires using `bevy_ecs_tilemap`
 which leaves visual artifacts at the edges of tiles. Also, saving and loading levels from disk
 doesn't work on WebAssembly. Anyway, I hope you enjoy!
 
-Star Machine is my proudest work, and my most complex game. I originally came up with the idea
-in middle school. A friend and I would spend class time designing puzzles on graph paper,
-which we would have each other solve at lunch. It was inspired by Minecraft's redstone,
-and we built a couple prototypes within Minecraft, until a teacher told me I should just make
-a standalone game. In senior year of high school, two friends and I made a prototype in JavaScript,
-but it lacked most of the features. I worked on an earlier version in Bevy for my honors thesis
-from February 2021 to June 2021, but I left my school's honors program and stopped work
-on the game. Then, in December 2021, I restarted and made this version of the game. It's
-much more robust than all previous versions. I have many more ideas for this game, and I want
-to extend it with hundreds of levels in the future.
+#### Description
+
+Star Machine is my proudest work, and my most complex game. I have many more ideas for this game,
+and I want to extend it with hundreds of levels in the future.
 
 The most complex part of the game, and the most difficult piece of software I've ever written,
 is the solver. It's the part of the game that analyzes how the components are connected via
@@ -267,17 +261,26 @@ flavored as alternating current. Having to update the solver every time I wanted
 mechanic is what drove me away from this project, but I plan to return to it eventually,
 with a more robust and abstract solver.
 
+### Heist Havoc (December 2022 - Present)
+
+<video src="https://user-images.githubusercontent.com/38388947/216214284-c3e629de-c812-4d0b-8afe-3b4844f96b6c.mp4" data-canonical-src="https://user-images.githubusercontent.com/38388947/200797425-0fb3d389-28c3-46f6-bdb7-cc424ec9edd0.mp4" controls="controls" muted="muted" class="d-block rounded-bottom-2 border-top width-fit" style="max-height:640px;">
+</video>
+
+This is a networked game based on [Robbin' and Rollin'](#robbin-and-rollin-october-2019---december-2019). I used `naia`
+for the networking. It handles syncing the ECS between client and server, but it doesn't handle
+rollback, so I implemented that myself. My rollback code doesn't work well on `naia`'s layers
+of abstraction, so I'm looking into using `naia_socket` directly instead.
+
 ### Mystery Castle (May 2022 - July 2022)
 
 <video src="https://user-images.githubusercontent.com/38388947/200753144-97823c41-cd99-4ba9-99a6-4d9d1a929ca2.mp4" data-canonical-src="https://user-images.githubusercontent.com/38388947/200753144-97823c41-cd99-4ba9-99a6-4d9d1a929ca2.mp4" controls="controls" muted="muted" class="d-block rounded-bottom-2 border-top width-fit" style="max-height:640px;">
 </video>
 
-After I graduated from college, I started working on a game with some friends. I pitched this idea
-for a mystery game to them, and they liked it, so we got started. I did the programming
+After I graduated from college, I started working on a game with some friends. I did the programming
 and scripting, and we also had an artist, writer, and another scripter. I got the game
 to a state where the team could start rapidly adding content, while I work on making the game
-look and feel better, but the artist dropped from the team due to being busy, and the rest
-of the team didn't have as much time as I did, so we put the project on indefinite hiatus.
+look and feel better, but we had to put the project on indefinite hiatus after multiple team members
+became busy.
 
 The game was inspired by Outer Wilds and Return of the Obra Dinn. It's a mystery game
 with time mechanics. This portfolio is public, though, so I don't want to spoil the central
@@ -334,6 +337,25 @@ switch time() {
 }
 ```
 
+### Terraria Archipelago (December 2022 - Present)
+
+[GitHub](https://github.com/Seldom-SE/archipelago_terraria_client) - [Steam](https://steamcommunity.com/sharedfiles/filedetails/?id=2922217554)
+
+A randomizer is a mod for a game that shuffles around items in the game without making it
+unsolvable. So, in Hollow Knight, for example, when you pick up the item that lets you dash,
+it might give you the item that lets you double jump instead. [Archipelago](https://archipelago.gg/)
+is a multiworld randomizer, which means that it shuffles items *between* games. So,
+when you defeat Skeletron in your Terraria game, your friend might get the dash in Hollow Knight,
+but your game isn't in a Post-Skeletron state (so you can't enter the Dungeon) until your friend
+picks up some other item in their game.
+
+I made a Terraria integration for Archipelago. The server-side integration is in Python. It handles
+the complex game logic and interfaces with Archipelago's core. The mod is written in C# and handles
+communicating with Archipelago's server, processing player commands, and directly editing Terraria's
+bytecode (CIL) to modify gameplay features. I am currently working on tweaking Terraria's
+progression to be a better fit for randomization and adding support for Calamity, a popular mod
+for Terraria.
+
 ### Voxmod (April 2022 - May 2022)
 
 *The following repository is not currently licensed, in case you're someone who is concerned*
@@ -358,10 +380,7 @@ on [Mystery Castle](#mystery-castle-may-2022---july-2022).
 Dark Realms is a roguelike that's like a zoomed-in Pacman. You collect loot from chests
 while avoiding ghosts. It's the black-and-white game featured at the end of `seldom_pixel`'s
 [demo video](https://youtu.be/pmTPdGxYVYw?t=90). I spent most of the development time getting
-my crates to a releasable state and releasing them. This is my most recent project showcased here.
-I recently went back to an older project that is not showcased here (since there's
-very little to show), which is a top-down team-based shooter in submarines. I put two days of work
-into that project at the time of writing.
+my crates to a releasable state and releasing them.
 
 ### Spindarella's Monsters (August 2022)
 
@@ -369,7 +388,7 @@ into that project at the time of writing.
 
 This game was a blast to create. It was for Bevy's second game jam, whose theme was "COMBINE".
 I worked with some very talented gamedevs in the Bevy community, so we got a lot done.
-You can see the credits on [the Itch page](https://github.com/BroovyJammy/gaem). We made a
+You can see the credits on [the Itch page](https://iyes.itch.io/spindarellas-monsters). We made a
 turn-based tactics game where you build and send monstrosities into battle to impress a spider
 lady. I focused more on the in-game interface and effects, unit movement and attacking, AI,
 and design.
@@ -390,12 +409,12 @@ and it's a great showcase for `seldom_pixel`. It's the second to last scene in `
 
 Cotton, inspired by Catan, was a game that I made because I wanted to add more variation to Catan.
 I enjoy how the variation in the board setup can make for very different games. If all of the
-brick tiles are assigned unfavorable chits, the gameplay will be more focused on development cards,
-which don't need bricks. I expanded this variation by randomly assigning each tile, port, and chit
-independently of each other, instead of shuffling and dealing. Now, you might end up with a game
-with no mountains or three deserts. This one was more of a side project after
-[Mystery Castle](#mystery-castle-may-2022---july-2022) was put on hiatus, but I finished the core
-of the game, except you can't trade or win. But then I came up with new ideas for it,
+brick tiles are assigned unfavorable chits, for example, the gameplay will be more focused
+on development cards, which don't need bricks. I expanded this variation by randomly assigning
+each tile, port, and chit independently of each other, instead of shuffling and dealing. Now,
+you might end up with a game with no mountains or three deserts. This one was more of a side project
+after [Mystery Castle](#mystery-castle-may-2022---july-2022) was put on hiatus, but I finished
+the core of the game, except you can't trade or win. But then I came up with new ideas for it,
 which became [Bloodcurse Island](#bloodcurse-island-july-2022---august-2022).
 
 ### Super Dodge Mania! (November 2018 - June 2020)
@@ -438,7 +457,8 @@ the most money before the time runs out. There's a constant sense of risk and re
 because the player has to decide which items to go for based on the type, distance, proximity
 to the opponent, items they and the opponent have, etc. Picking up money bags leaves less space
 in your inventory and decreases your walking speed, but bringing them back to spawn
-is the only way to get money.
+is the only way to get money. It would be a great multiplayer game, which I implemented
+in [Heist Havoc](#heist-havoc-december-2022---present).
 
 ### Bevy Cursed Tomb (February 2022 - March 2022)
 
