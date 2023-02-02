@@ -26,7 +26,7 @@ I ordered these projects roughly by some combination of reverse-chronology and r
 This portfolio is split into four main sections. Here's some links for navigation.
 
 - [Bevy Plugins](#bevy-plugins) (5 items)
-- [Games](#games) (13 items)
+- [Games](#games) (15 items)
 - [Work](#work) (3 items)
 - [Other Projects](#other-projects) (4 items)
 
