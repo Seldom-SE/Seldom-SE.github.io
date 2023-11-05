@@ -6,7 +6,7 @@ title: Hayden Badger - Seldom
 
 # Hayden Badger - Seldom
 
-Hello! I'm Hayden, a game developer and Bevy plugin author. This portfolio showcases
+Hello! I'm Seldom, a game developer and Bevy plugin author. This portfolio showcases
 my more notable projects. First, here's a brief introduction.
 
 I've used various tools to make games since 2008, but I didn't learn Rust until 2019,
@@ -18,7 +18,7 @@ got a job working on [Dreamthorn](#dreamthorn-february-2023---present), but I st
 on the side.
 
 In May 2022, I earned my Software Engineering B.S. from Arizona State University with a 4.00 GPA.
-Since then, I lived off the money I saved up and worked on various projects in Bevy.
+Then, I lived off the money I saved up and worked on various projects in Bevy.
 After adding Rhai scripting to [one of my games](#mystery-castle-may-2022---july-2022), I realized
 some of my work could be useful to other developers. Since then, I've been writing my games
 in a decoupled way, so I can pull out a piece of it and release it as a plugin. I've released
