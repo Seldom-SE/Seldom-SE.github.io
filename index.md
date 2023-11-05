@@ -14,7 +14,8 @@ when I was in college. It quickly became my favorite language, so I started many
 in it. I used Amethyst on and off, until I got into Bevy 0.4 in December 2020. I used it
 on and off, until September 2021, when I became less busy with school and work, and I started
 working on my Bevy projects very actively. This active work continued until February 2023, when I
-got a gamedev job, but I still work on projects on the side.
+got a job working on [Dreamthorn](#dreamthorn-february-2023---present), but I still work on projects
+on the side.
 
 In May 2022, I earned my Software Engineering B.S. from Arizona State University with a 4.00 GPA.
 Since then, I lived off the money I saved up and worked on various projects in Bevy.
@@ -40,8 +41,8 @@ This portfolio is split into four main sections. Here's some links for navigatio
 [Dreamthorn](https://www.dreamthorn.com/)
 
 I work full-time on Dreamthorn! Definitely click the link for this one, the website has a good
-description. For the client, we used Bevy until March 2023, when we switched to Unreal our own Rust
-layer. The server
+description. For the client, we used Bevy until March 2023, when we switched to Unreal with our own
+Rust layer. The server
 is in a custom engine in Rust. I work on all sorts of features and systems, though I won't go into
 detail here.
 
