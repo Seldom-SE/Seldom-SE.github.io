@@ -13,22 +13,70 @@ I've used various tools to make games since 2008, but I didn't learn Rust until 
 when I was in college. It quickly became my favorite language, so I started many projects
 in it. I used Amethyst on and off, until I got into Bevy 0.4 in December 2020. I used it
 on and off, until September 2021, when I became less busy with school and work, and I started
-working on my Bevy projects very actively. This active work continues to today.
+working on my Bevy projects very actively. This active work continued until February 2023, when I
+got a gamedev job, but I still work on projects on the side.
 
 In May 2022, I earned my Software Engineering B.S. from Arizona State University with a 4.00 GPA.
-Since then, I've been living off the money I saved up and working on various projects in Bevy.
+Since then, I lived off the money I saved up and worked on various projects in Bevy.
 After adding Rhai scripting to [one of my games](#mystery-castle-may-2022---july-2022), I realized
 some of my work could be useful to other developers. Since then, I've been writing my games
 in a decoupled way, so I can pull out a piece of it and release it as a plugin. I've released
-5 Bevy-related crates so far, and I currently have 3 more in the works.
+5 Bevy-related crates so far, and I have 3 more that I might polish and release someday.
 
 I ordered these projects roughly by some combination of reverse-chronology and relevance.
 This portfolio is split into four main sections. Here's some links for navigation.
 
+- [Work](#work) (4 items)
 - [Bevy Plugins](#bevy-plugins) (5 items)
 - [Games](#games) (15 items)
-- [Work](#work) (3 items)
 - [Other Projects](#other-projects) (4 items)
+
+## Work
+
+[Back to top](#hayden-badger---seldom)
+
+### Dreamthorn (February 2023 - Present)
+
+[Dreamthorn](https://www.dreamthorn.com/)
+
+I work full-time on Dreamthorn! Definitely click the link for this one, the website has a good
+description. For the client, we used Bevy until March 2023, when we switched to Unreal our own Rust
+layer. The server
+is in a custom engine in Rust. I work on all sorts of features and systems, though I won't go into
+detail here.
+
+### Sparklight (June 2021 - August 2021)
+
+[Sparklight](https://www.sparklight.com/)
+
+I was brought on as an intern to a team that creates user-facing code. In my time here, I developed
+APIs in ASP.NET Core to replace some legacy code and make way for more functionality in a product.
+I was involved in the process of Scrum and participated in requirements-gathering meetings.
+I learned a lot about software development in larger companies and workplace communication.
+
+### StreamWork (September 2018 - January 2021)
+
+[StreamWork](https://www.streamwork.live/)
+
+StreamWork was a startup that I co-founded! We, a small team with only two developers, created
+an educational live-streaming website that raised $27,000 in grants. It was built in ASP.NET Core
+on Microsoft ASURE, using C#, HTML/CSS, and JavaScript, with a SQL database. The website
+was fully-functioning, with OBS-compatible live-streaming, video archiving, live chat,
+a comments section, view counting, video search, customizable profiles and profile pictures,
+an email notification system, and a payment system. I learned how to work on a team under time
+and budget restraints. I'm proud of what my team and I built, and it's satisfying to see what we
+can build over a long period of time.
+
+### True Fans (September 2021 - April 2022)
+
+[Client](https://roguemedialive.com/)
+
+Four peers and I developed an iOS/Android social medium
+targeting sports fans for an external client as our capstone project. It was written
+in React Native with Typescript, using Firebase/Firestore for the database. I wrote
+most of the backend and database code. We used Agile Scrum to organize, and personally met
+with the client to gather requirements. The app was not released, but we finished
+the work that we were responsible for, and the client was very pleased with the end result.
 
 ## Bevy Plugins
 
@@ -46,7 +94,7 @@ animations, typefaces, particle emitters,
 for limited color palette pixel art games. It leverages the color palette restriction
 to make it easy to create effects, and relatively easy for me to add effect-related features.
 I originally made it for [Bloodcurse Island](#bloodcurse-island-july-2022---august-2022),
-and I've been using it for all of my Bevy projects since then.
+and I've been using it for most of my Bevy projects since then.
 
 The two main pieces of `seldom_pixel` are the asset processing and the rendering. Bevy `Image`s
 are processed into my own image representation that varies based on the type of asset.
@@ -86,7 +134,8 @@ commands
 
 [GitHub](https://github.com/Seldom-SE/seldom_state)
 
-`seldom_state` is my most popular crate. It adds a component-based state machine that you can add
+`seldom_state` is the go-to state machine crate for Bevy. It adds a
+component-based state machine that you can add
 to your entities. You can define your own states and triggers, and you can automatically add
 and remove bundles based on the current state. Most of the implementation involved Rust type system
 magic and Bevy reflection, which was fun to work with and resulted in a pretty clean API.
@@ -94,15 +143,20 @@ magic and Bevy reflection, which was fun to work with and resulted in a pretty c
 Here's a sample of code that uses `seldom_state`.
 
 ```rust
-.insert(
-    StateMachine::new(Move)
+.insert((
+    StateMachine::new()
         .trans::<Move>(JustPressedTrigger(Action::Melee), Melee)
         .trans::<Melee>(DoneTrigger::success(), Move)
-        .remove_on_exit::<Melee, PxAnimationBundle>()
+        .on_exit::<Melee>(|entity| {
+            entity.remove::<PxAnimationBundle>();
+        })
         .trans::<Move>(JustPressedTrigger(Action::Shoot), Shoot)
         .trans::<Shoot>(DoneTrigger::success(), Move)
-        .remove_on_exit::<Shoot, PxAnimationBundle>(),
-)
+        .on_exit::<Shoot>(|entity| {
+            entity.remove::<PxAnimationBundle>();
+        }),
+    Move,
+))
 ```
 
 ### `seldom_map_nav` (September 2022 - Present)
@@ -137,7 +191,7 @@ let pathfind = Pathfind::new(
 // ...
 
 .insert(
-    StateMachine::new(Idle)
+    StateMachine::new()
         .trans::<Idle>(
             Near {
                 target: player,
@@ -152,12 +206,13 @@ let pathfind = Pathfind::new(
             },
         )
         .trans::<NavBundle>(
-            NotTrigger(Near {
+            Near {
                 target: player,
                 range: LOSE_PLAYER_RANGE,
-            }),
+            }.not(),
             Idle,
         ),
+    Idle
 )
 ```
 
@@ -166,8 +221,8 @@ let pathfind = Pathfind::new(
 [GitHub](https://github.com/Seldom-SE/seldom_fn_plugin)
 
 `seldom_fn_plugin` is a small crate that improves the ergonomics of Bevy plugins by avoiding
-them entirely. The example below shows a basic usage, but it can also help to avoid using
-`PhantomData` and making unnecessary clones.
+them entirely. It's my most popular crate, despite its size. The example below shows a basic usage,
+but it can also help to avoid using `PhantomData` and making unnecessary clones.
 
 ```rust
 // Before:
@@ -247,8 +302,8 @@ doesn't work on WebAssembly. Anyway, I hope you enjoy!
 
 #### Description
 
-Star Machine is my proudest work, and my most complex game. I have many more ideas for this game,
-and I want to extend it with hundreds of levels in the future.
+Star Machine is my proudest work, and my most complex solo game project. I have many more ideas for
+this game, and I want to extend it with hundreds of levels in the future.
 
 The most complex part of the game, and the most difficult piece of software I've ever written,
 is the solver. It's the part of the game that analyzes how the components are connected via
@@ -266,7 +321,8 @@ with a more robust and abstract solver.
 <video src="https://user-images.githubusercontent.com/38388947/216214284-c3e629de-c812-4d0b-8afe-3b4844f96b6c.mp4" data-canonical-src="https://user-images.githubusercontent.com/38388947/200797425-0fb3d389-28c3-46f6-bdb7-cc424ec9edd0.mp4" controls="controls" muted="muted" class="d-block rounded-bottom-2 border-top width-fit" style="max-height:640px;">
 </video>
 
-This is a networked game based on [Robbin' and Rollin'](#robbin-and-rollin-october-2019---december-2019). I used `naia`
+This is a networked game based on
+[Robbin' and Rollin'](#robbin-and-rollin-october-2019---december-2019). I used `naia`
 for the networking. It handles syncing the ECS between client and server, but it doesn't handle
 rollback, so I implemented that myself. My rollback code doesn't work well on `naia`'s layers
 of abstraction, so I'm looking into using `naia_socket` directly instead.
@@ -291,7 +347,7 @@ files, so none of the game's content is hard-coded. The LDtk levels could specif
 to run on collision or interact, and the scripts could pull information from the levels,
 game state, data exposed from other scripts, and config. I think the scripting turned out well.
 
-```rhai
+```rust
 switch time() {
     "3:00" => {
         dialog("The door is locked").wait();
@@ -339,7 +395,7 @@ switch time() {
 
 ### Terraria Archipelago (December 2022 - Present)
 
-[GitHub](https://github.com/Seldom-SE/archipelago_terraria_client) - [Steam](https://steamcommunity.com/sharedfiles/filedetails/?id=2922217554)
+[Documentation](https://archipelago.gg/games/Terraria/info/en) - [Setup Guide](https://archipelago.gg/tutorial/Terraria/setup/en) - [GitHub](https://github.com/Seldom-SE/archipelago_terraria_client) - [Steam](https://steamcommunity.com/sharedfiles/filedetails/?id=2922217554)
 
 A randomizer is a mod for a game that shuffles around items in the game without making it
 unsolvable. So, in Hollow Knight, for example, when you pick up the item that lets you dash,
@@ -349,12 +405,12 @@ when you defeat Skeletron in your Terraria game, your friend might get the dash 
 but your game isn't in a Post-Skeletron state (so you can't enter the Dungeon) until your friend
 picks up some other item in their game.
 
-I made a Terraria integration for Archipelago. The server-side integration is in Python. It handles
+I made the official Terraria integration for Archipelago. It came out well and it's really popular!
+The server-side integration is in Python. It handles
 the complex game logic and interfaces with Archipelago's core. The mod is written in C# and handles
 communicating with Archipelago's server, processing player commands, and directly editing Terraria's
-bytecode (CIL) to modify gameplay features. I am currently working on tweaking Terraria's
-progression to be a better fit for randomization and adding support for Calamity, a popular mod
-for Terraria.
+bytecode (CIL) to modify gameplay features. I am currently working on adding support for Calamity, a
+popular mod for Terraria.
 
 ### Voxmod (April 2022 - May 2022)
 
@@ -381,6 +437,15 @@ Dark Realms is a roguelike that's like a zoomed-in Pacman. You collect loot from
 while avoiding ghosts. It's the black-and-white game featured at the end of `seldom_pixel`'s
 [demo video](https://youtu.be/pmTPdGxYVYw?t=90). I spent most of the development time getting
 my crates to a releasable state and releasing them.
+
+### Radiation Situation (April 2023)
+
+[Play](https://seldom-se.itch.io/radiation-situation) - [GitHub](https://github.com/Seldom-SE/bevy_jam_3)
+
+This game is a post-apocalyptic Don't Starve-like survival game, but with radiation instead of
+sanity. I made it with some of my coworkers
+at Dreamthorn for Bevy's third game jam, whose theme was was "Side Effects". I worked on worldgen,
+items, inventory, crafting, constructs, enemies, radiation, power, and UI.
 
 ### Spindarella's Monsters (August 2022)
 
@@ -457,7 +522,7 @@ the most money before the time runs out. There's a constant sense of risk and re
 because the player has to decide which items to go for based on the type, distance, proximity
 to the opponent, items they and the opponent have, etc. Picking up money bags leaves less space
 in your inventory and decreases your walking speed, but bringing them back to spawn
-is the only way to get money. It would be a great multiplayer game, which I implemented
+is the only way to get money. It would be a great with networking, which I implemented
 in [Heist Havoc](#heist-havoc-december-2022---present).
 
 ### Bevy Cursed Tomb (February 2022 - March 2022)
@@ -486,41 +551,6 @@ don't get rid of them. The final boss cannot be defeated and leaves a trail of t
 that cannot be built on, so the endgame involves building what you need in confined spaces.
 Unfortunately, the endgame drags on, because the enemies eventually create lag, slowing down
 the game.
-
-## Work
-
-[Back to top](#hayden-badger---seldom)
-
-### Sparklight (June 2021 - August 2021)
-
-I was brought on as an intern to a team that creates user-facing code. In my time here, I developed
-APIs in ASP.NET Core to replace some legacy code and expand a product's capabilities.
-I was involved in the process of Scrum and participated in requirements-gathering meetings.
-I learned a lot about software development in larger companies and workplace communication.
-
-### StreamWork (September 2018 - January 2021)
-
-[StreamWork](https://www.streamwork.live/)
-
-StreamWork was a startup that I co-founded! We, a small team with only two developers, created
-an educational live-streaming website that raised $27,000 in grants. It was built in ASP.NET Core
-on Microsoft ASURE, using C#, HTML/CSS, and JavaScript, with a SQL database. The website
-was fully-functioning, with OBS-compatible live-streaming, video archiving, live chat,
-a comments section, view counting, video search, customizable profiles and profile pictures,
-an email notification system, and a payment system. I learned how to work on a team under time
-and budget restraints. I'm proud of what my team and I built, and it's satisfying to see what we
-can build over a long period of time.
-
-### True Fans (September 2021 - April 2022)
-
-[Client](https://roguemedialive.com/)
-
-Four peers and I developed an iOS/Android social medium
-targeting sports fans for an external client as our capstone project. It was written
-in React Native with Typescript, using Firebase/Firestore for the database. I wrote
-most of the backend and database code. We used Agile Scrum to organize, and personally met
-with the client to gather requirements. The app has not been released yet, but we finished
-the work that we were responsible for, and the client was very pleased with the end result.
 
 ## Other Projects
 
