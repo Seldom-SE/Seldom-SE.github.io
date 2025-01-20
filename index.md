@@ -14,37 +14,56 @@ when I was in college. It quickly became my favorite language, so I started many
 in it. I used Amethyst on and off, until I got into Bevy 0.4 in December 2020. I used it
 on and off, until September 2021, when I became less busy with school and work, and I started
 working on my Bevy projects very actively. This active work continued until February 2023, when I
-got a job working on [Dreamthorn](#dreamthorn-february-2023---present), but I still work on projects
-on the side.
+got a job working on [Dreamthorn](#dreamthorn-february-2023---november-2023), and later,
+[Elevated Arcana](#elevated-arcana-january-2024---january-2025), but I still work on projects on the
+side.
 
 In May 2022, I earned my Software Engineering B.S. from Arizona State University with a 4.00 GPA.
 Then, I lived off the money I saved up and worked on various projects in Bevy.
 After adding Rhai scripting to [one of my games](#mystery-castle-may-2022---july-2022), I realized
 some of my work could be useful to other developers. Since then, I've been writing my games
 in a decoupled way, so I can pull out a piece of it and release it as a plugin. I've released
-5 Bevy-related crates so far, and I have 3 more that I might polish and release someday.
+6 Bevy-related crates so far.
 
 I ordered these projects roughly by some combination of reverse-chronology and relevance.
 This portfolio is split into four main sections. Here's some links for navigation.
 
-- [Work](#work) (4 items)
-- [Bevy Plugins](#bevy-plugins) (5 items)
-- [Games](#games) (15 items)
-- [Other Projects](#other-projects) (4 items)
+- [Work](#work) (6 items)
+- [Bevy Plugins](#bevy-plugins) (6 items)
+- [Games](#games) (19 items)
+- [Other Projects](#other-projects) (5 items)
 
 ## Work
 
 [Back to top](#hayden-badger---seldom)
 
-### Dreamthorn (February 2023 - Present)
+I worked on all sorts of features and systems for these projects, but for many of them, I won't go
+into detail here.
+
+### Elevated Arcana (January 2024 - January 2025)
+
+[Elevated Arcana](https://elevatedarcana.com/)
+
+This is a Bevy iOS roguelike where you use spells and upgrades to defend your tower against enemies.
+You can play it on an iPhone with TestFlight! There's a trailer on the website, but the game is a
+lot better since that was made.
+
+### ROIDS (November 2023 - December 2023)
+
+[ROIDS](https://playroids.com/)
+
+Despite the title, it's not a game about getting ripped. It's a resource extraction game made in
+Bevy where you mine asteroids and use the materials to upgrade your ships. I was brought on to work
+on this game until we shifted focus to
+[Elevated Arcana](#elevated-arcana-january-2024---january-2025). See the trailer on the website.
+
+### Dreamthorn (February 2023 - November 2023)
 
 [Dreamthorn](https://www.dreamthorn.com/)
 
-I work full-time on Dreamthorn! Definitely click the link for this one, the website has a good
+Definitely click the link for this one, the website has a good
 description. For the client, we used Bevy until March 2023, when we switched to Unreal with our own
-Rust layer. The server
-is in a custom engine in Rust. I work on all sorts of features and systems, though I won't go into
-detail here.
+Rust layer. The server is in a custom engine in Rust.
 
 ### Sparklight (June 2021 - August 2021)
 
@@ -52,8 +71,8 @@ detail here.
 
 I was brought on as an intern to a team that creates user-facing code. In my time here, I developed
 APIs in ASP.NET Core to replace some legacy code and make way for more functionality in a product.
-I was involved in the process of Scrum and participated in requirements-gathering meetings.
-I learned a lot about software development in larger companies and workplace communication.
+I was involved in Scrum and requirements-gathering meetings. I learned a lot about software
+development in larger companies.
 
 ### StreamWork (September 2018 - January 2021)
 
@@ -64,8 +83,8 @@ an educational live-streaming website that raised $27,000 in grants. It was buil
 on Microsoft ASURE, using C#, HTML/CSS, and JavaScript, with a SQL database. The website
 was fully-functioning, with OBS-compatible live-streaming, video archiving, live chat,
 a comments section, view counting, video search, customizable profiles and profile pictures,
-an email notification system, and a payment system. I learned how to work on a team under time
-and budget restraints. I'm proud of what my team and I built, and it's satisfying to see what we
+an email notification system, and a payment system. This was my first big team project, so I learned
+a lot. I'm proud of what we built, and it's satisfying to see what we
 can build over a long period of time.
 
 ### True Fans (September 2021 - April 2022)
@@ -90,8 +109,7 @@ the work that we were responsible for, and the client was very pleased with the 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/pmTPdGxYVYw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 `seldom_pixel` is my largest plugin and the plugin that I'm proudest of. It handles filters,
-animations, typefaces, particle emitters,
-[`bevy_ecs_tilemap`](https://github.com/StarArawn/bevy_ecs_tilemap) integration, and much more,
+animations, typefaces, particle emitters, tilemaps, and much more,
 for limited color palette pixel art games. It leverages the color palette restriction
 to make it easy to create effects, and relatively easy for me to add effect-related features.
 I originally made it for [Bloodcurse Island](#bloodcurse-island-july-2022---august-2022),
@@ -111,24 +129,20 @@ Here's a sample of code that uses `seldom_pixel`.
     right_click: assets.invert.clone(),
 };
 
-commands
-    .spawn_bundle(PxSpriteBundle {
-        sprite: assets.background.clone(),
-        anchor: PxAnchor::BottomLeft,
-        layer: Layer::Background,
-        ..default()
-    })
-    .insert(assets.background_filter.clone())
-    .insert(Name::new("Background"));
+commands.spawn((
+    PxSprite(assets.background.clone()),
+    PxAnchor::BottomLeft,
+    Layer::Background,
+    PxFilter(assets.background_filter.clone()),
+    Name::new("Background"),
+));
 
-commands
-    .spawn_bundle(PxSpriteBundle::<Layer> {
-        sprite: assets.player_idle.clone(),
-        ..default()
-    })
-    .insert(PxSubPosition::default())
-    .insert(Player)
-    .insert(Name::new("Player"));
+commands.spawn((
+    PxSprite(assets.player_idle.clone()),
+    PxSubPosition::default(),
+    Player,
+    Name::new("Player"),
+));
 ```
 
 ### `seldom_state` (September 2022 - Present)
@@ -146,13 +160,13 @@ Here's a sample of code that uses `seldom_state`.
 ```rust
 .insert((
     StateMachine::new()
-        .trans::<Move>(JustPressedTrigger(Action::Melee), Melee)
-        .trans::<Melee>(DoneTrigger::success(), Move)
+        .trans::<Move, _>(just_pressed(Action::Melee), Melee)
+        .trans::<Melee, _>(done(Some(Done::Success)), Move)
         .on_exit::<Melee>(|entity| {
             entity.remove::<PxAnimationBundle>();
         })
-        .trans::<Move>(JustPressedTrigger(Action::Shoot), Shoot)
-        .trans::<Shoot>(DoneTrigger::success(), Move)
+        .trans::<Move, _>(jupst_pressed(Action::Shoot), Shoot)
+        .trans::<Shoot, _>(done(Some(Done::Success)), Move)
         .on_exit::<Shoot>(|entity| {
             entity.remove::<PxAnimationBundle>();
         }),
@@ -193,7 +207,7 @@ let pathfind = Pathfind::new(
 
 .insert(
     StateMachine::new()
-        .trans::<Idle>(
+        .trans::<Idle, _>(
             Near {
                 target: player,
                 range: TRACK_PLAYER_RANGE,
@@ -206,7 +220,7 @@ let pathfind = Pathfind::new(
                 },
             },
         )
-        .trans::<NavBundle>(
+        .trans::<NavBundle, _>(
             Near {
                 target: player,
                 range: LOSE_PLAYER_RANGE,
@@ -217,13 +231,14 @@ let pathfind = Pathfind::new(
 )
 ```
 
-### `seldom_fn_plugin` (August 2022 - Present)
+### `seldom_fn_plugin` (August 2022 - February 2024)
 
 [GitHub](https://github.com/Seldom-SE/seldom_fn_plugin)
 
-`seldom_fn_plugin` is a small crate that improves the ergonomics of Bevy plugins by avoiding
-them entirely. It's my most popular crate, despite its size. The example below shows a basic usage,
-but it can also help to avoid using `PhantomData` and making unnecessary clones.
+`seldom_fn_plugin` was a small crate that improved the ergonomics of Bevy plugins by avoiding
+them entirely. It was my most popular crate, despite its size. The example below shows a basic
+usage, but it can also help to avoid using `PhantomData` and making unnecessary clones. I no longer
+maintain it, because Bevy added a similar API upstream.
 
 ```rust
 // Before:
@@ -243,18 +258,62 @@ pub fn controls_plugin(app: &mut App) {
 }
 ```
 
-### `seldom_interop` (September 2022 - Present)
+### `seldom_singleton` (April 2024 - Present)
+
+[GitHub](https://github.com/Seldom-SE/seldom_singleton)
+
+`seldom_singleton` is a small crate that adds a helper that makes it slightly more ergonomic to use
+a resource that contains a single handle. So, if you have a config file that you load as an asset,
+you can use this to make your code a little nicer.
+
+### `seldom_interop` (September 2022 - May 2024)
 
 [GitHub](https://github.com/Seldom-SE/seldom_interop)
 
-`seldom_interop` is a small crate that adds traits for Bevy position components. I made it
+`seldom_interop` was a small crate that adds traits for Bevy position components. I made it
 so that I could use [`seldom_map_nav`](#seldom_map_nav-september-2022---present)
 with [`seldom_pixel`](#seldom_pixel-july-2022---present)'s position components, while maintaining
-support for `Transform`.
+support for `Transform`. I no longer maintain it, because I added its features to `seldom_map_nav`
+instead.
 
 ## Games
 
 [Back to top](#hayden-badger---seldom)
+
+As someone who makes for the joy of making, I start a *lot* of projects. Here is a selection of
+games that I've worked on in recent years.
+
+### Terminal Skies (December 2024 - Present)
+
+<video src="https://github.com/user-attachments/assets/fd180c6d-6bc0-492c-97d9-ee11e2b1fc91" data-canonical-src="https://github.com/user-attachments/assets/fd180c6d-6bc0-492c-97d9-ee11e2b1fc91" controls="controls" muted="muted" class="d-block rounded-bottom-2 border-top width-fit" style="max-height:640px;">
+</video>
+
+Sometimes I want to make a multiplayer game and I just can't help myself. It's so fun to make
+something that you can show off to your friends by playing it with them. This one is a multiplayer
+boss rush, but so far, I just have a couple enemies and a miniboss. It's good dogfooding for both
+`seldom_pixel` and `seldom_state`. I'm using the networking crate, `lightyear`, and it's working
+great for me.
+
+### Horror Roguelike (December 2023 - July 2024)
+
+<video src="https://github.com/user-attachments/assets/1273f842-88f0-4b36-b77c-caa01639ad0d" data-canonical-src="https://github.com/user-attachments/assets/1273f842-88f0-4b36-b77c-caa01639ad0d" controls="controls" muted="muted" class="d-block rounded-bottom-2 border-top width-fit" style="max-height:640px;">
+</video>
+
+This is a project that I started with a friend. I made the level in Blender, and it gets loaded in
+with Blenvy. I wrote a lot of asset loading and reflection code to create all the enemies and items
+at runtime from data files and populated into the level. I also spent a lot of time improving
+`seldom_pixel`, so I could pipe in a rendered image, pixellate/palettize it, and then draw over it,
+all without 1-frame lag. I worked a lot on systems, but ultimately didn't get around to adding
+almost any content.
+
+### Voxel Game (November 2023 - December 2023)
+
+<video src="https://github.com/user-attachments/assets/bc7f9169-1702-49a6-8fcb-1add90f13d61" data-canonical-src="https://github.com/user-attachments/assets/bc7f9169-1702-49a6-8fcb-1add90f13d61" controls="controls" muted="muted" class="d-block rounded-bottom-2 border-top width-fit" style="max-height:640px;">
+</video>
+
+I was making a voxel game for Bevy's fourth game jam, but I didn't finish it in time. I liked to
+work on it, though, so I kept going. I wrote my own physics, but the chunk meshing is done using
+`bevy_meshem`.
 
 ### Star Machine (December 2021 - April 2022)
 
@@ -303,11 +362,12 @@ doesn't work on WebAssembly. Anyway, I hope you enjoy!
 
 #### Description
 
-Star Machine is my proudest work, and my most complex solo game project. I have many more ideas for
-this game, and I want to extend it with hundreds of levels in the future.
+Star Machine is one of the projects that I'm proudest of, and one of my most complex solo game
+projects. I have many more ideas for this game, and I want to extend it with hundreds of levels in
+the future.
 
-The most complex part of the game, and the most difficult piece of software I've ever written,
-is the solver. It's the part of the game that analyzes how the components are connected via
+The most complex part of the game, and one of the most difficult pieces of software I've ever
+written, is the solver. It's the part of the game that analyzes how the components are connected via
 wires and lasers, and determines what should be on and what should be off. What makes the solver
 so complex is that it is possible to create cycles that either enforce that the cycle should
 stay in the same power state, or contradict itself, making it impossible for it to be in either
@@ -317,7 +377,7 @@ flavored as alternating current. Having to update the solver every time I wanted
 mechanic is what drove me away from this project, but I plan to return to it eventually,
 with a more robust and abstract solver.
 
-### Heist Havoc (December 2022 - Present)
+### Heist Havoc (December 2022 - February 2023)
 
 <video src="https://user-images.githubusercontent.com/38388947/216214284-c3e629de-c812-4d0b-8afe-3b4844f96b6c.mp4" data-canonical-src="https://user-images.githubusercontent.com/38388947/200797425-0fb3d389-28c3-46f6-bdb7-cc424ec9edd0.mp4" controls="controls" muted="muted" class="d-block rounded-bottom-2 border-top width-fit" style="max-height:640px;">
 </video>
@@ -326,7 +386,7 @@ This is a networked game based on
 [Robbin' and Rollin'](#robbin-and-rollin-october-2019---december-2019). I used `naia`
 for the networking. It handles syncing the ECS between client and server, but it doesn't handle
 rollback, so I implemented that myself. My rollback code doesn't work well on `naia`'s layers
-of abstraction, so I'm looking into using `naia_socket` directly instead.
+of abstraction, so I was looking into using `naia_socket` directly instead.
 
 ### Mystery Castle (May 2022 - July 2022)
 
@@ -556,6 +616,16 @@ the game.
 ## Other Projects
 
 [Back to top](#hayden-badger---seldom)
+
+### Dydassi (September 2024 - Present)
+
+Since learning Bevy development for iOS, I wanted to make myself a TODO app to my liking. It has
+time tracking that integrates with a planner that helps me decide what to work on. It's actually
+based on a terminal-based TODO program that I worked on from August 2023 to February 2024.
+Genuinely,  I have improved my life by migrating to this app, since I can offload a lot of my
+thinking in a way that's not possible with other apps. But, I'm not currently looking to release it,
+since it's really hard to use if you're not familiar with it, and maintaining an iOS app on the App
+Store sounds awful. No demo, because you'll have no idea what you're looking at.
 
 ### Tower (February 2022)
 
